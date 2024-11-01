@@ -1,0 +1,24 @@
+{
+  "name": "weather-cli",
+  "version": "1.0.0",
+  "description": "CLI for getting weather",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "weather"
+  ],
+  "author": "Nikolai Tyranov",
+  "license": "ISC",
+  "repository": {
+    "type": "git", 
+    "url": "https://github.com/NikolaiT/weather-cli"
+  },
+  "bin": {
+    "url": "https://github.com/NikolaiT/weather-cli"
+    
+  }
+}
