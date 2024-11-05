@@ -14,11 +14,13 @@
   "author": "Nikolai Tyranov",
   "license": "ISC",
   "repository": {
-    "type": "git", 
+    "type": "git",
     "url": "https://github.com/NikolaiT/weather-cli"
   },
   "bin": {
     "url": "https://github.com/NikolaiT/weather-cli"
-    
+  },
+  "dependencies": {
+    "axios": "^1.7.7"
   }
 }
