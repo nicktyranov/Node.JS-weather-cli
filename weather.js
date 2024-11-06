@@ -6,8 +6,7 @@ import { saveKeyValue, TOKEN_DICTIONARY } from './services/storage.service.js';
 import notifier from 'node-notifier';
 
 const setupTimer = async (hours) => {
-	// const time = hours * 60 * 60 * 1000;
-	const time = 7 * 1000;
+	const time = hours * 60 * 60 * 1000;
 	console.log('timer started');
 
 	setInterval(async () => { 
