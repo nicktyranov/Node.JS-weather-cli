@@ -37,11 +37,14 @@ const getWeather = async () => {
 	if (!city) {
 		throw new Error('city was not set up, use command -s [city_name]');
 	}
+	const language = await getKeyValue(TOKEN_DICTIONARY.language) || 'en';
+	
+	
 	const { data } = await axios.get('https://api.openweathermap.org/data/2.5/weather', {
 		params: {
 			q: city,
 			appid: token,
-			lang: 'ru',
+			lang: language,
 			units: 'metric'
 		}
 	});
