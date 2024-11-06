@@ -1,8 +1,12 @@
 {
-  "name": "weather-cli",
+  "name": "weather-cli-demo",
   "version": "1.0.0",
   "description": "CLI for getting weather",
-  "main": "index.js",
+  "main": "weather.js",
+  "bin": {
+    "weather": "weather.js"
+  },
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,12 +19,18 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NikolaiT/weather-cli"
+    "url": "https://github.com/nicktyranov/Node.JS-weather-cli"
   },
-  "bin": {
-    "url": "https://github.com/NikolaiT/weather-cli"
+  "bugs": {
+    "url": "https://github.com/nicktyranov/Node.JS-weather-cli",
+    "email": "nicktyranov@gmail.com"
   },
   "dependencies": {
-    "axios": "^1.7.7"
+    "axios": "^1.7.7",
+    "chalk": "^5.3.0",
+    "dedent-js": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0"
   }
 }
