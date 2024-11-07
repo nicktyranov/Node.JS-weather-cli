@@ -5,22 +5,26 @@ import { printHelp, printSuccess, printError, printWeather } from './services/lo
 import { saveKeyValue, TOKEN_DICTIONARY } from './services/storage.service.js';
 import notifier from 'node-notifier';
 
-const setupTimer = async (hours) => {
+const setupTimer = async (hours = 1) => {
 	const time = hours * 60 * 60 * 1000;
-	console.log('timer started');
+	console.log(`interval was setup on ${time} ms`);
 
 	setInterval(async () => { 
-		const res = await getWeather(TOKEN_DICTIONARY.city);
-		if (!res){
-			return; 
-		}
-		let data = `📍 Weather in ${res.name} • ${getIcon(res.weather[0].icon)}${res.weather[0].description}${getIcon(res.weather[0].icon)} • 🌡️ Temp: ${res.main.temp}°C (Feels like: ${res.main.feels_like}°C) • 💧 Humidity: ${res.main.humidity}% • 🌬️ Wind speed: ${res.wind.speed} m/s`;
+		try {
+			const res = await getWeather(TOKEN_DICTIONARY.city);
+			if (!res){
+				return; 
+			}
+			let data = `📍 Weather in ${res.name} • ${getIcon(res.weather[0].icon)}${res.weather[0].description}${getIcon(res.weather[0].icon)} • 🌡️ Temp: ${res.main.temp}°C (Feels like: ${res.main.feels_like}°C) • 💧 Humidity: ${res.main.humidity}% • 🌬️ Wind speed: ${res.wind.speed} m/s`;
 
-		notifier.notify({
-			title: `Current weather ${getIcon(res.weather[0].icon)}`,
-			message: data
-		});
+			notifier.notify({
+				title: `Current weather ${getIcon(res.weather[0].icon)}`,
+				message: data
+			});
 		
+		} catch (error) {
+			console.error('Failed to fetch weather data:', error.message);
+		}
 	}, time);
 };
 
