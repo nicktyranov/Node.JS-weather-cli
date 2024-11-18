@@ -6,6 +6,10 @@ const printError = (error) => {
 	console.log(chalk.bgRed(` error: ${error}`));
 };
 
+const printInfo = (message) => {
+	console.log(chalk.bgYellow(` info: ${message}`));
+};
+
 const printSuccess = (message) => {
 	console.log(chalk.bgGreen(` message: ${message}`));
 };
@@ -84,4 +88,4 @@ const printWeather = (res, icon) => {
 	);
 };
 
-export {printError, printSuccess, printHelp, printWeather};
+export {printError, printInfo, printSuccess, printHelp, printWeather};

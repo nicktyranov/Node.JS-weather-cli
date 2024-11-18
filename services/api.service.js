@@ -1,4 +1,5 @@
-import {getKeyValue, TOKEN_DICTIONARY} from './storage.service.js';
+import { getKeyValue, TOKEN_DICTIONARY } from './storage.service.js';
+import {  printInfo } from './services/log.service.js';
 import axios from 'axios';
 
 const getIcon = (icon) => {
@@ -37,6 +38,9 @@ const getWeather = async () => {
 		throw new Error('city was not set up, use command -s [city_name]');
 	}
 	const language = await getKeyValue(TOKEN_DICTIONARY.language) || 'en';
+	if (!await getKeyValue(TOKEN_DICTIONARY.language)) {
+		printInfo('Language is not set up. Defaulting to English');
+	}
 	
 	try {
 		const { data } = await axios.get('https://api.openweathermap.org/data/2.5/weather', {

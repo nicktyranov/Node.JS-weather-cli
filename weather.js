@@ -1,13 +1,21 @@
 #!/usr/bin/env node
 import {getArgs} from './helpers/args.js';
 import { getIcon, getWeather } from './services/api.service.js';
-import { printHelp, printSuccess, printError, printWeather } from './services/log.service.js';
+import { printHelp, printInfo, printSuccess, printError, printWeather } from './services/log.service.js';
 import { saveKeyValue, TOKEN_DICTIONARY } from './services/storage.service.js';
 import notifier from 'node-notifier';
 
+const supportedLanguages = [
+	'sq', 'af', 'ar', 'az', 'eu', 'be', 'bg', 'ca', 'zh_cn', 'zh_tw', 'hr', 'cz', 'da', 
+	'nl', 'en', 'fi', 'fr', 'gl', 'de', 'el', 'he', 'hi', 'hu', 'is', 'id', 'it', 'ja', 
+	'kr', 'ku', 'la', 'lt', 'mk', 'no', 'fa', 'pl', 'pt', 'pt_br', 'ro', 'ru', 'sr', 
+	'sk', 'sl', 'sp', 'es', 'sv', 'th', 'tr', 'ua', 'uk', 'vi', 'zu'
+];
+
+
 const setupTimer = async (hours = 1) => {
 	const time = hours * 60 * 60 * 1000;
-	console.log(`interval was setup on ${time} ms`);
+	console.log(`interval was setup on ${hours} ${hours == 1? 'hour' : 'hours'}`);
 
 	setInterval(async () => { 
 		try {
@@ -94,11 +102,21 @@ const initCLI = () => {
 		return saveToken(args.t);
 	}
 	if (args.lang) {
-		return setupLang(args.lang);
+		if (!supportedLanguages.includes(args.lang)) {
+			printError(`Invalid language code. Supported language codes are: ${supportedLanguages.join(', ')}. Use command "weather -h for more information`);
+			return printInfo('Use command "weather -h" for more information');
+		} else {
+			return setupLang(args.lang);
+		}
 	}
 
 	if (args.ntf) {
-		return setupTimer();
+		if (args.ntf <= 0) {
+			return printError('Please provide a valid number of hours greater than 0.');
+		} else {
+			return setupTimer(args.ntf);
+		}
+		
 	}
 	return getForecast();
 };
