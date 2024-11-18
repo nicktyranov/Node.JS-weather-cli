@@ -1,6 +1,6 @@
 {
   "name": "weather-cli-with-notifications",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "CLI for getting weather with notifications",
   "main": "weather.js",
   "bin": {

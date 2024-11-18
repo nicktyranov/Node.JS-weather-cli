@@ -23,9 +23,12 @@ To install and use the Weather CLI globally:
 npm install -g weather-cli-with-notifications
 ```
 
-After installation, you can run the CLI with the following commands:
+To use this CLI, you need an API key from OpenWeatherMap. Register for a free API key here:
+[https://openweathermap.org/](https://openweathermap.org/)
+
+After obtaining the key, set it up using the following command:
 ```bash
-weather-cli --help
+weather -t <YOUR_API_KEY>
 ```
 
 ### From Source
@@ -44,7 +47,7 @@ If you prefer to work with the source code:
 
 3. Run the CLI:
    ```bash
-   node index.js
+   node weather.js
    ```
 
 ## Usage
@@ -57,7 +60,8 @@ Displays the weather for the default city.
 ### Commands
 - `-s [CITY]`: Set up the default city.
 - `-h`: Display help information.
-- `-t [API_KEY]`: Set up the API key for the weather service.
+- `-t [API_KEY]`: Set up the API key for the weather service.  
+  To get a free API key, register at [OpenWeatherMap](https://openweathermap.org/).
 - `-ntf [NUMBER]`: Set up the frequency for checking the weather in hours.
 - `-lang [LANGUAGE]`: Set up the language. Supported options include:
 
